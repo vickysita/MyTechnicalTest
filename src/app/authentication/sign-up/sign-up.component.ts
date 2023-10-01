@@ -55,30 +55,8 @@ export class SignUpComponent implements OnInit {
       let date = model.date;
       let phoneNumber = model.phone;
 
-      let dateOfBirth = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+      let dateOfBirth = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
       this.authService.signUp(email, password, name, dateOfBirth, phoneNumber);
-      // this.spinnerService.loading = true;
-      // this.authService.signUp(email, password)
-      //   .then((result) => {
-      //     const user = result.user;
-      //     let uid = user?.uid;
-      //     this.authService.afs.collection('users').doc('users').set({
-      //       email,
-      //       password,
-      //       name,
-      //       dateOfBirth,
-      //       phoneNumber,
-      //       uid
-      //     });
-      //     if (user) {
-      //       this.router.navigate(['']);
-      //     }
-      //     this.spinnerService.loading = false;
-      //   })
-      //   .catch((error) => {
-      //     this.spinnerService.loading = false;
-      //     window.alert(error.message);
-      //   });
     } else {
       this._sweel.alertWarning("Atención", "El formulario presenta errores o está incompleto.");
     }

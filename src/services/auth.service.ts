@@ -5,11 +5,13 @@ import {
     AngularFirestore,
     AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
-import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { SpinnerService } from 'src/app/shared/spinner.service';
 import { SweelAlertService } from './sweetAlert';
+import { getFirestore, collection, getDocs, query, where, doc, getDoc } from "firebase/firestore";
+import { initializeApp } from '@angular/fire/app';
+import DB, { environment } from 'src/environment/environment';
 
 @Injectable({
     providedIn: 'root',
@@ -18,7 +20,8 @@ export class AuthService {
     userData: any;
     loading: boolean = false;
     _sweel: SweelAlertService = new SweelAlertService();
-    
+    data: any;
+
     constructor(
         public afs: AngularFirestore,
         public afAuth: AngularFireAuth,
@@ -39,13 +42,32 @@ export class AuthService {
         });
     }
 
+    getData(collectionRef: any) {
+        getDoc(collectionRef)
+            .then((docSnap) => {
+                if (docSnap.exists()) {
+                    this.data = docSnap.data();
+                } else {
+                    console.log("El documento no existe.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error al obtener el documento:", error);
+            });
+    }
+
     signIn(email: string, password: string) {
         this.spinnerService.loading = true;
         return this.afAuth
             .signInWithEmailAndPassword(email, password).then((result) => {
                 this.setUserData(result.user);
-                // const userNameDoc = this.afs.collection("users").doc(result.user?.uid).get();
-                
+
+                const nombreColeccion = "users";
+
+                const q = doc(DB, nombreColeccion, result.user?.uid +'');
+
+                this.getData(q);
+
                 this.afAuth.authState.subscribe((user) => {
                     if (user) {
                         this.spinnerService.loading = false;
@@ -77,7 +99,7 @@ export class AuthService {
                 });
 
                 if (user) {
-                    this.router.navigate(['']);
+                    this.router.navigate(['sign-in']);
                 }
                 this.spinnerService.loading = false;
             })
@@ -91,6 +113,7 @@ export class AuthService {
         const userRef: AngularFirestoreDocument<any> = this.afs.doc(
             `users/${user.uid}`
         );
+
         const userData: User = {
             uid: user.uid,
             email: user.email,

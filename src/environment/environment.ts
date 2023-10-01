@@ -1,3 +1,6 @@
+import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore';
+
 export const environment = {
     production: false,
     firebaseConfig: {
@@ -10,3 +13,8 @@ export const environment = {
         measurementId: "G-7Y4EN79665"
     }
 }
+
+const app = initializeApp(environment.firebaseConfig);
+const DB = getFirestore(app)
+
+export default DB

@@ -32,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './content/home/home.component';
 import { PokemonDialogComponent } from './content/pokemons-list/pokemon-dialog/pokemon-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ProfileDialogComponent } from './content/profile-dialog/profile-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     StringOfNumbersComponent,
     HomeComponent,
     PokemonDialogComponent,
+    ProfileDialogComponent,
   ],
   imports: [
     BrowserModule,

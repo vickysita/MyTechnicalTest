@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/services/auth.service';
+import { ProfileDialogComponent } from '../profile-dialog/profile-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +12,20 @@ export class HomeComponent {
   pokemons = true;
   numbers = false;
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, public dialog: MatDialog,){
+  }
 
+
+  openDialog(){
+    const dialogRef = this.dialog.open(ProfileDialogComponent, {
+      width: 'auto',
+      height: 'auto',
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
   
   menu(option: number) {
@@ -30,4 +44,6 @@ export class HomeComponent {
   logOut(){
     this.authService.logOut();
   }
+
+
 }

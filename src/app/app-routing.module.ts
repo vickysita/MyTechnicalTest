@@ -4,11 +4,7 @@ import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { HomeComponent } from './content/home/home.component';
 
-const routes: Routes = [
-  // { path: '', component: SignInComponent, data: { title: 'Sign In' } },
-  // { path: 'sign-up', component: SignUpComponent, data: { title: 'Sign Up' } },
-  // { path: 'pokemons', component: PokemonsListComponent, data: { title: 'Pokemon List' } },
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot([
