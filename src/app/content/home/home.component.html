@@ -1,0 +1,18 @@
+
+
+<div class="toolbar">
+    <button mat-button class="mdc-button" matTooltip="Ver Listado" (click)="menu(1)">
+        Pokémon
+    </button>
+    <button mat-button class="mdc-button" matTooltip="Repetición de números" (click)="menu(2)">
+        Números
+    </button>
+    <button mat-icon-button class="icon" matTooltip="Cerrar sesión" (click)="logOut()">
+        <mat-icon>exit_to_app</mat-icon>
+    </button>
+</div>
+
+<div class="content">
+    <app-pokemons-list class="w100" *ngIf="pokemons"></app-pokemons-list>
+    <app-string-of-numbers class="w100" *ngIf="numbers"></app-string-of-numbers>
+</div>

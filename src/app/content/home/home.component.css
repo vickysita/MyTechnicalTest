@@ -1,0 +1,48 @@
+.toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #1f4e78;
+    font-weight: 600;
+    flex-direction: row;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+
+.content {
+    display: flex;
+    margin: 82px auto 0px;
+    max-width: 70%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mdc-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 64px;
+    border: none;
+    outline: none;
+    line-height: inherit;
+    user-select: none;
+    overflow: visible;
+    vertical-align: middle;
+    color: white !important;
+}
+
+.icon {
+    color: white !important;
+}
+
+
+.w100 {
+    width: 100%;
+}

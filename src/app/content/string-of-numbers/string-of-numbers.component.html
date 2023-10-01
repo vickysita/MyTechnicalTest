@@ -1,0 +1,16 @@
+<div fxLayout="column" style="width: 100%">
+    <div fxLayout="row">
+        <mat-form-field fxFlex="100">
+            <input matInput pattern="^[0-9,]*$" placeholder="Ingresa números para calcular su repetición" [(ngModel)]="numComma"
+                (keypress)="keyPressEvent($event)" (keyup)="keyUpEvent($event)">
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row">
+        <ul *ngIf="numComma">
+            <li *ngFor="let resultado of obtenerResultadosOrdenados()">
+                <h3><b>El {{ resultado[0] }} se repite {{ resultado[1] }} veces.</b></h3>
+            </li>
+        </ul>
+    </div>
+</div>

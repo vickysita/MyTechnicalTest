@@ -1,0 +1,19 @@
+<router-outlet></router-outlet>
+
+<div *ngIf="spinnerService?.loading">
+    <div class="modalOn">
+        <div class="loadings">
+            <!-- <img class="width" src="../../../../../assets/images-htasist/logos/icon-blue.png"> <br> -->
+            <div class="lds-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>

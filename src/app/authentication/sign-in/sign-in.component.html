@@ -1,0 +1,57 @@
+
+<div id="signIn" fxLayout="row" fxLayoutAlign="center center" fusePerfectScrollbar>
+
+    <div id="signIn-form-wrapper" fxLayoutAlign="center center">
+
+        <div id="signIn-form" fxLayout="column">
+
+            <div class="title">Inicio de sesión</div>
+
+            <form name="signInForm" fxLayout="column" fxFlex="100" class="form" [formGroup]="signInForm" novalidate>
+                <mat-form-field fxFlex="100">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput type="text" formControlName="email">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="!signInForm.controls['email'].hasError('required')">
+                        Introduce un correo válido. <strong>Ej: ejemplo@ejemplo.com</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <mat-icon matSuffix (click)="hide = !hide" style="cursor: pointer;">{{hide ? 'visibility_off' :
+                        'visibility'}}</mat-icon>
+                    <mat-error *ngIf="signInForm.controls['password'].hasError('required')">
+                        La contraseña es requerida
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- <mat-form-field fxFlex="100"  >
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput  type="text" formControlName="phone">
+                    <mat-icon matSuffix>phone</mat-icon>
+                    <mat-error *ngIf="signInForm.controls['phone'].hasError('required')">
+                        El teléfono es requerido
+                    </mat-error>
+                    <mat-error>
+                        Por favor, introduce un teléfono válido.
+                    </mat-error>
+                </mat-form-field> -->
+
+                <div class="sign_up">
+                    ¿Necesitas una cuenta?
+                    <a [routerLink]="'/sign-up'">
+                        Registrate
+                    </a>
+                </div>
+
+                <div>
+                    <button mat-raised-button class="submit-button" aria-label="LOG IN" (click)="doSignIn()">
+                        Iniciar sesión
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

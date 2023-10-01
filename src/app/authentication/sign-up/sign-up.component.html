@@ -1,0 +1,77 @@
+<div id="signUp" fxLayout="row" fxLayoutAlign="center center" fusePerfectScrollbar>
+
+    <div id="signUp-form-wrapper" fxLayoutAlign="center center">
+
+        <div id="signUp-form" fxLayout="column">
+
+            <div class="title">Registro</div>
+
+            <form name="signUpForm" fxLayout="column" fxFlex="100" class="form" [formGroup]="signUpForm" novalidate>
+
+                <mat-form-field fxFlex="100">
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput formControlName="email">
+                    <mat-icon matSuffix>mail</mat-icon>
+                    <mat-error *ngIf="!signUpForm.controls['email'].hasError('required')">
+                        Introduce un correo válido. <strong>Ej: ejemplo@ejemplo.com</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <mat-icon matSuffix (click)="hide = !hide" style="cursor: pointer;">{{hide ? 'visibility_off' :
+                        'visibility'}}</mat-icon>
+                    <mat-error *ngIf="signUpForm.controls['password'].hasError('required')">
+                        La contraseña es requerida
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput  type="text" formControlName="name">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="signUpForm.controls['name'].hasError('required')">
+                        El nombre es requerido
+                    </mat-error>
+                    <mat-error *ngIf="signUpForm.controls['name'].hasError('pattern')">
+                        Por favor, introduce un nombre válido.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput type="text" formControlName="phone" maxlength="10">
+                    <mat-icon matSuffix>phone</mat-icon>
+                    <mat-error *ngIf="signUpForm.controls['phone'].hasError('required')">
+                        El teléfono es requerido
+                    </mat-error>
+                    <mat-error *ngIf="signUpForm.controls['phone'].hasError('pattern')">
+                        Por favor, introduce un teléfono válido.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100" class="mt-22">
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="date" [max]="maxDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <div class="sign_in">
+                    ¿Ya tienes una cuenta?
+                    <a [routerLink]="'/'">
+                        Inicia sesión
+                    </a>
+                </div>
+
+
+                <div>
+                    <button mat-raised-button class="submit-button" aria-label="LOG IN" (click)="doSignUp()">
+                        Registrarse
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
