@@ -77,7 +77,7 @@ export class AuthService {
             })
             .catch((error) => {
                 this.spinnerService.loading = false;
-                this._sweel.alertWarning("Atención", "El correo electrónico y/o la contraseña son incorrectas. Favor intentalo de nuevo.");
+                this._sweel.alertWarning("Atención", "El correo electrónico y/o la contraseña son incorrectas o el usuario no existe. Favor intentalo de nuevo.");
             });
 
     }
